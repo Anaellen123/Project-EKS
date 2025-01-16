@@ -87,5 +87,55 @@ Ele gerencia a operação geral do Kubernetes e é essencial para que o cluster 
   - Segurança: Os pods e nós estão em sub-redes privadas, protegidos do acesso externo direto.
   - Redundância: A arquitetura em múltiplas AZs garante alta disponibilidade.
 
-
+## Armazenamento e Backup
 ![EKS Cloud](armazenamento_backup.png)
+
+#####1. Amazon RDS MySQL:
+  - Um banco de dados relacional gerenciado pela AWS (MySQL).
+  - Função:
+      - Hospeda dados transacionais ou de aplicação.
+      - Fornece backups automatizados e suporte a alta disponibilidade.
+  - Contexto no Diagrama:
+    - Está em uma sub-rede privada, protegido contra acessos externos.
+  - Vantagem: Reduz a complexidade da administração do banco de dados e oferece escalabilidade gerenciada.
+
+#### 2. RDS Read Replica (RDS Slave):
+  - Réplica de leitura do banco de dados principal (RDS MySQL).
+  - Função:
+      - Fornece uma instância secundária para leitura, aliviando a carga de consultas do banco de dados principal.
+      - Pode ser usada para recuperação em caso de falha do banco de dados principal.
+  - Vantagem: Melhora o desempenho e fornece redundância para alta disponibilidade.
+
+#### 3. Key Management Service (KMS):
+  - Serviço de gerenciamento de chaves de criptografia.
+  - Função:
+      - Criptografa dados armazenados em backups e buckets S3.
+      - Garante segurança e conformidade com políticas de proteção de dados.
+  - Vantagem: Oferece um meio seguro e centralizado para gerenciar chaves de criptografia.
+
+#### 4. AWS Backup:
+  - Serviço gerenciado para orquestrar e automatizar backups de recursos da AWS.
+  - Função:
+    - Faz backup dos dados do RDS (principal e réplicas) e armazena os backups no Backup Vault.
+    - Também cria cópias dos backups no S3 para recuperação e retenção de longo prazo.
+ - Vantagem: Automação do processo de backup com suporte a políticas de retenção e replicação.
+
+#### 5. Backup Vault:
+  - Repositório centralizado para armazenar backups.
+  - Função:
+    - Garante armazenamento seguro e criptografado dos backups criados pelo AWS Backup.
+  - Vantagem: Centraliza e organiza backups, melhorando a gestão e recuperação.
+
+#### 6. Amazon S3 Buckets:
+  - Armazena backups gerados pelo AWS Backup.
+  - Função:
+      - S3 Cross-Region Replication (CRR): Garante a replicação dos backups entre buckets em diferentes regiões para redundância geográfica.
+      - AMI Copy: Pode armazenar imagens de máquinas virtuais para recuperação ou replicação de ambientes.
+  - Vantagem: Oferece durabilidade e alta disponibilidade para armazenamento de longo prazo.
+
+#### 7. Endpoint Gateway:
+  - Permite que os serviços em sub-redes privadas acessem o S3 diretamente sem expor o tráfego à internet.
+  - Função:
+      - Facilita o acesso seguro aos buckets S3, mantendo os dados dentro da infraestrutura AWS.
+  - Vantagem: Melhora a segurança e reduz custos com transferências de dados pela internet.
+
