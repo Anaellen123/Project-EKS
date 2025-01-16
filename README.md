@@ -86,3 +86,6 @@ Ele gerencia a operação geral do Kubernetes e é essencial para que o cluster 
 #### 9. Segurança e Redundância:
   - Segurança: Os pods e nós estão em sub-redes privadas, protegidos do acesso externo direto.
   - Redundância: A arquitetura em múltiplas AZs garante alta disponibilidade.
+
+
+![EKS Cloud](armazenamento_backup.png)
