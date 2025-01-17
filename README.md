@@ -2,6 +2,7 @@
 
 ## Descrição do Projeto
 Este projeto visa modernizar o sistema fornecido pelo cliente, migrando-o para a infraestrutura de nuvem da AWS e adotando as melhores práticas de arquitetura em nuvem. O sistema atual é composto pelos seguintes componentes:
+--
 
 ### Infraestrutura Atual
 1. *Banco de Dados MySQL:*
@@ -14,6 +15,7 @@ Este projeto visa modernizar o sistema fornecido pelo cliente, migrando-o para a
   - Funcionalidades: Hospeda 3 APIs e utiliza o Nginx como balanceador de carga. Também armazena arquivos estáticos, como imagens e links.
   - Dados: 5 GB.
   - Recursos: 4 GB de RAM e 2 CPUs.
+---
 
 ### Objetivo
 Modernizar o sistema para utilizar uma arquitetura baseada em AWS Elastic Kubernetes Service (EKS), atendendo às seguintes diretrizes:
@@ -23,7 +25,7 @@ Modernizar o sistema para utilizar uma arquitetura baseada em AWS Elastic Kubern
   -  Sistema para persistência de objetos (imagens, vídeos etc.);
   -  Segurança;
 
-
+---
 ## Cluster EKS:
 ![EKS Cloud](EKS%20Cloud.png)
 
@@ -86,7 +88,7 @@ Ele gerencia a operação geral do Kubernetes e é essencial para que o cluster 
 #### 9. Segurança e Redundância:
   - Segurança: Os pods e nós estão em sub-redes privadas, protegidos do acesso externo direto.
   - Redundância: A arquitetura em múltiplas AZs garante alta disponibilidade.
-
+---
 ## Armazenamento e Backup
 ![EKS Cloud](armazenamento_backup.png)
 
@@ -138,4 +140,57 @@ Ele gerencia a operação geral do Kubernetes e é essencial para que o cluster 
   - Função:
       - Facilita o acesso seguro aos buckets S3, mantendo os dados dentro da infraestrutura AWS.
   - Vantagem: Melhora a segurança e reduz custos com transferências de dados pela internet.
+---
+##  Segurança, Gerenciamento de acessos
+![EKS Cloud](registro_acesso_segurança.png)
 
+#### 1. AWS Secrets Manager:
+  - Gerencia segredos, como credenciais de banco de dados, chaves de API ou outros dados sensíveis.
+  - Função:
+      - Armazena e protege segredos.
+      - Atualiza automaticamente credenciais e chaves de acesso.
+  - Vantagem: Melhora a segurança ao evitar armazenamento de segredos diretamente no código.
+
+#### 2. AWS Identity and Access Management (IAM):
+  - Gerencia permissões e controle de acesso aos recursos da AWS.
+  - Função:
+      - Define políticas de acesso (IAM Policy) para usuários, grupos ou funções.
+      - Protege com autenticação baseada em políticas (User Secret e Secret Policy).
+  - Vantagem: Garante que os recursos sejam acessados apenas por usuários autorizados com permissões adequadas.
+---
+## Entrega de conteúdo
+
+#### 1. AWS Certificate Manager (ACM):
+  - Gerencia certificados SSL/TLS.
+  - Função:
+      - Fornece e renova automaticamente certificados para criptografar a comunicação entre usuários e sistemas.
+  - Vantagem: Facilita a implementação de HTTPS para maior segurança na transmissão de dados.
+
+#### 2. Amazon CloudFront:
+  - Serviço de CDN (Content Delivery Network).
+  - Função:
+      - Distribui conteúdo (páginas web, APIs, arquivos estáticos) globalmente com baixa latência.
+      - Trabalha junto com o ACM para oferecer HTTPS seguro.
+  - Vantagem: Melhora o desempenho e a segurança do acesso dos usuários ao sistema.
+    
+#### 3. Amazon Route 53:
+  - Serviço de DNS gerenciado.
+  - Função:
+      - Roteia o tráfego do domínio dos usuários para o CloudFront, balanceador de carga ou outros serviços.
+  - Vantagem: Oferece alta disponibilidade e roteamento inteligente.
+---
+## Balanceamento de carga
+
+#### 1. Elastic Load Balancer (Load Balancer):
+  - Distribui o tráfego entre várias instâncias ou serviços.
+  - Função:
+      - Gerencia a carga de trabalho para evitar sobrecarga em uma única instância.
+      - Fornece redundância e resiliência.
+  - Vantagem: Melhora a escalabilidade e resiliência do sistema.
+---
+## Amazon ECR (Elastic Container Registry):
+Armazena imagens de contêineres Docker  servindo como repositório central para armazenar e versionar imagens de contêiner.
+
+## Internet Gateway:
+Permite que recursos em sub-redes públicas se comuniquem com a internet proporcionando acesso bidirecional entre a VPC e a internet
+---
