@@ -27,7 +27,13 @@ Modernizar o sistema para utilizar uma arquitetura baseada em AWS Elastic Kubern
   -  Backup de dados;
   -  Sistema para persistência de objetos (imagens, vídeos etc.);
   -  Segurança;
+--- 
 
+## 🚨Observação:
+Antes do sistema passar pelo processo de modernização ele precisa passar por um processo de migração para AWS “lift-and-shift” ou “as-is”, neste caso estamos utilizando **lift-and-shift**
+  O diagrama do processo de migração está presente no repósitorio de minha dupla deste projeto
+  https://github.com/ctrl-brokencode/Projeto-Final-Arquitetura-Migracao
+  
 ---
 ## Cluster EKS:
 ![EKS Cloud](EKS%20Cloud.png)
