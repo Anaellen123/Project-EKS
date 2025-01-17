@@ -1,8 +1,11 @@
 # Projeto de Modernização para AWS com EKS
+---
 
 ## Descrição do Projeto
+
 Este projeto visa modernizar o sistema fornecido pelo cliente, migrando-o para a infraestrutura de nuvem da AWS e adotando as melhores práticas de arquitetura em nuvem. O sistema atual é composto pelos seguintes componentes:
---
+
+---
 
 ### Infraestrutura Atual
 1. *Banco de Dados MySQL:*
@@ -90,7 +93,7 @@ Ele gerencia a operação geral do Kubernetes e é essencial para que o cluster 
   - Redundância: A arquitetura em múltiplas AZs garante alta disponibilidade.
 ---
 ## Armazenamento e Backup
-![EKS Cloud](armazenamento_backup.png)
+![Armazenamento](armazenamento_backup.png)
 
 #####1. Amazon RDS MySQL:
   - Um banco de dados relacional gerenciado pela AWS (MySQL).
@@ -142,7 +145,7 @@ Ele gerencia a operação geral do Kubernetes e é essencial para que o cluster 
   - Vantagem: Melhora a segurança e reduz custos com transferências de dados pela internet.
 ---
 ##  Segurança, Gerenciamento de acessos
-![EKS Cloud](registro_acesso_segurança.png)
+![Registro_Segurança_Acesso](registro_acesso_segurança.png)
 
 #### 1. AWS Secrets Manager:
   - Gerencia segredos, como credenciais de banco de dados, chaves de API ou outros dados sensíveis.
@@ -192,5 +195,22 @@ Ele gerencia a operação geral do Kubernetes e é essencial para que o cluster 
 Armazena imagens de contêineres Docker  servindo como repositório central para armazenar e versionar imagens de contêiner.
 
 ## Internet Gateway:
-Permite que recursos em sub-redes públicas se comuniquem com a internet proporcionando acesso bidirecional entre a VPC e a internet
+
+Permite que recursos em sub-redes públicas se comuniquem com a internet proporcionando acesso bidirecional entre a VPC e a internet.
+
 ---
+## Monitoramento e Notificações
+![Monitoramento](monitoramento.png)
+
+#### 1. Amazon CloudWatch
+  - Coleta e armazena logs (como logs de aplicação, sistema ou eventos).
+  - Monitora métricas configuradas, como uso de CPU, memória, tráfego de rede ou falhas em recursos.
+  - Configura alarmes baseados em thresholds predefinidos (ex.: alertar se o uso de CPU exceder 80%).
+
+#### 2. Email Notification (via Amazon SNS ou CloudWatch Alarms)
+  - Notifica a equipe sobre problemas críticos, como falhas, picos de uso, ou indisponibilidade de recursos.
+  - Permite uma resposta rápida para incidentes que podem impactar o sistema ou a experiência do usuário.
+
+#### 3. Logs
+  - Representa os registros detalhados de atividades e eventos gerados por aplicações e serviços.
+  - Usado para depuração, auditoria e análise do comportamento do sistema.
