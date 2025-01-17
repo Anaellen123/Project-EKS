@@ -224,7 +224,7 @@ Permite que recursos em sub-redes públicas se comuniquem com a internet proporc
 ---
 
 ## Sistema Completo do Cluster EKS
-![ClusterEKS](ClusterEKS.png)
+![ClusterEKS](Cleks.png)
 
 ---
 
@@ -244,3 +244,5 @@ Foi utilizado o serviço AWS Princing Calculator é uma ferramenta que ajuda a e
 | ECR                     | 4,00        | North Virgínia    |
 | AWS Secrets Manager     | 0,40        | North Virgínia    |
 **Total mensal: 613,74 USD**    |  **Total anual: 7.365,00 USD**
+
+**Link para AWS Princing Calculator AWS Princing Calculator**
