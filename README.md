@@ -95,7 +95,7 @@ Ele gerencia a operação geral do Kubernetes e é essencial para que o cluster 
 ## Armazenamento e Backup
 ![Armazenamento](armazenamento_backup.png)
 
-#####1. Amazon RDS MySQL:
+##### 1. Amazon RDS MySQL:
   - Um banco de dados relacional gerenciado pela AWS (MySQL).
   - Função:
       - Hospeda dados transacionais ou de aplicação.
@@ -214,3 +214,27 @@ Permite que recursos em sub-redes públicas se comuniquem com a internet proporc
 #### 3. Logs
   - Representa os registros detalhados de atividades e eventos gerados por aplicações e serviços.
   - Usado para depuração, auditoria e análise do comportamento do sistema.
+
+---
+
+## Sistema Completo do Cluster EKS
+![ClusterEKS](ClusterEKS.png)
+
+---
+
+## AWS Princing Calculator:
+
+Foi utilizado o serviço AWS Princing Calculator é uma ferramenta que ajuda a estimar os custos do serviços que serão utilizados na AWS para a Mordenização desse sistema para cluster EKS
+
+| Serviço                  | Custo (USD) | Região            |
+|--------------------------|-------------|-------------------|
+| Cluster EKS             | 73,00       | North Virgínia    |
+| MySQL                   | 381,28      | North Virgínia    |
+| Nodes EC2               | 46,76       | North Virgínia    |
+| Load Balancer           | 75,43       | North Virgínia    |
+| Bucket S3               | 0,26        | North Virgínia    |
+| CloudWatch              | 29,16       | North Virgínia    |
+| AWS Backup              | 3,45        | North Virgínia    |
+| ECR                     | 4,00        | North Virgínia    |
+| AWS Secrets Manager     | 0,40        | North Virgínia    |
+**Total mensal: 613,74 USD**    |  **Total anual: 7.365,00 USD**
